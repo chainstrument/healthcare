@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import {Plus_Jakarta_Sans} from "next/font/google";
+  
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+import { cn } from '@/lib/utils';
+
+const fontSans = Plus_Jakarta_Sans({ 
+ 
+  subsets: ["latin"],
+  weight: ['300','400','500','600','700'],
+  variable: "--font-sans",
 });
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
