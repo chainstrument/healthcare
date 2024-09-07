@@ -11,11 +11,8 @@ const fontSans = Plus_Jakarta_Sans({
   weight: ['300','400','500','600','700'],
   variable: "--font-sans",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
+
 
 export const metadata: Metadata = {
   title: "CAre Pulse",
@@ -30,7 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn('min-h-screen bg-dark-300 font-sans antialiased', 
+          fontSans.variable)}
       >
         {children}
       </body>
