@@ -13,6 +13,7 @@ import {
   import { Input } from "@/components/ui/input"
 import { Control } from "react-hook-form"
 import { FormFieldType } from "./PatientForm"
+import Image from "next/image"
 
   interface CustomProps {
     control: Control<any>,
@@ -32,13 +33,33 @@ import { FormFieldType } from "./PatientForm"
 
 const RenderField = ({field, props}: {field: any, props: CustomProps}) => {
 
-  return (
-    <Input 
-      type="text"
-      placeholder="John Doe"
-     
-    />
-  )
+  const { fieldType, iconSrc, iconAlt, placeholder} = props
+
+  switch (fieldType) {
+    case FormFieldType.INPUT:
+      return (
+      <div className="flex rounded-md border-dark-500 bg-dark-400">
+        {props.iconSrc && 
+          (<Image 
+            src={iconSrc} 
+            alt={iconAlt || "icon"}
+            height={24}
+            width={24}
+            className="ml-2"
+            />
+           )}
+        <FormControl>
+          <Input 
+            placeholder={placeholder}
+            {...field}
+            className="shad-input border-0"
+          />
+        </FormControl>
+      </div>)
+          default:
+            break;
+  }
+   
 }
 
 
@@ -47,26 +68,24 @@ const CustomFormFiled = (props: CustomProps) => {
   const {control, fieldType, name, label} = props;
  
   return (
-    
+    <FormField
+              control={control}
+              name={name}
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  {fieldType !== FormFieldType.CHECKBOX && label &&(
+                    <FormLabel> {label} </FormLabel>
+                  )}
 
-<FormField
-          control={control}
-          name={name}
-          render={({ field }) => (
-            <FormItem className="flex-1">
-              {fieldType !== FormFieldType.CHECKBOX && label &&(
-                <FormLabel> {label} </FormLabel>
+                <RenderField  field={field} props={props} />
+                
+                <FormMessage className="shad-error"  />
+
+                </FormItem>
               )}
 
-            <RenderField  field={field} props={props} />
-            
-            <FormMessage className="shad-error"  />
 
-            </FormItem>
-          )}
-
-
-        />
+            />
 
     
   )
