@@ -18,7 +18,7 @@ export enum FormFieldType  {
     TIME_PICKER = "timePicker",
     FILE = "file",
     CHECKBOX_GROUP = "checkboxGroup",
-    RADIO_GROUP = "radioGroup"
+    RADIO_GROUP = "radioGroup",
     RADIO = "radio",
     SELECT = "select",
     SKELETON = "skeleton",
@@ -63,7 +63,26 @@ const PatientForm = () => {
             iconAlt="user"
 
         />
-        
+         <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="email"
+            label="Email"
+            placeholder="john@example.com"
+            iconSrc="assets/icons/email.svg"
+            iconAlt="email"
+
+        />
+
+        <CustomFormField
+            fieldType={FormFieldType.PHONE_INPUT}
+            control={form.control}
+            name="phone"
+            label="Phone number"
+            placeholder="01234567898" 
+           
+
+        />
         <Button type="submit">Submit</Button>
       </form>
     </Form>
